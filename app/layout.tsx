@@ -5,7 +5,7 @@ import { Space_Mono } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import './globals.css'
 import { Navbar } from '@/components/navbar'
-
+import { ClerkProvider } from '@clerk/nextjs'
 const fontHeading = Bricolage_Grotesque({
     subsets: ['latin'],
     display: 'swap',
@@ -21,16 +21,19 @@ const fontBody = Space_Mono({
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-            <body
-                className={cn(
-                    'antialiased',
-                    fontHeading.variable,
-                    fontBody.variable
-                )}
-            ><Navbar />
-                {children}
-            </body>
-        </html>
+        <ClerkProvider>
+            <html lang="en">
+                <body
+                    className={cn(
+                        'antialiased',
+                        fontHeading.variable,
+                        fontBody.variable
+                    )}
+                ><Navbar />
+                    {children}
+                </body>
+
+            </html>
+        </ClerkProvider>
     )
 }
