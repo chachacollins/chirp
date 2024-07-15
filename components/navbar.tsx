@@ -8,23 +8,23 @@ export function Navbar() {
             <div className="container mx-auto flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2" prefetch={false}>
                     <BirdIcon className="h-6 w-6" />
-                    <span className="text-lg font-semibold">Chirp</span>
+                    <span className="text-3xl font-semibold">Chirp</span>
                 </Link>
                 <nav className="hidden items-center gap-4 md:flex">
-                    <Link href="/" className="text-sm font-medium transition-colors hover:text-primary" prefetch={false}>
+                    <Link href="/" className="text-sm font-bold transition-colors hover:text-primary" prefetch={false}>
                         Home
                     </Link>
-                    <Link href="#" className="text-sm font-medium transition-colors hover:text-primary" prefetch={false}>
+                    <Link href="#" className="text-sm font-bold transition-colors hover:text-primary" prefetch={false}>
                         Chirps
                     </Link>
-                    <Link href="#" className="text-sm font-medium transition-colors hover:text-primary" prefetch={false}>
+                    <Link href="#" className="text-sm font-bold transition-colors hover:text-primary" prefetch={false}>
                         Profile
                     </Link>
                 </nav>
                 <SignedOut>
                     <Link
                         href="#"
-                        className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary/50 disabled:pointer-events-none disabled:opacity-50"
+                        className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-bold text-primary-foreground shadow transition-colors hover:bg-primary/90 focus:outline-none focus:ring-1 focus:ring-primary/50 disabled:pointer-events-none disabled:opacity-50"
                         prefetch={false}
                     >
                         <SignInButton />

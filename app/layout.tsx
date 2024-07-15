@@ -1,5 +1,6 @@
 // This is the root layout component for your Next.js app.
 // Learn more: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
+
 import { Bricolage_Grotesque } from 'next/font/google'
 import { Space_Mono } from 'next/font/google'
 import { cn } from '@/lib/utils'
@@ -11,7 +12,7 @@ const fontHeading = Bricolage_Grotesque({
     display: 'swap',
     variable: '--font-heading',
 })
-
+import { dark } from '@clerk/themes';
 const fontBody = Space_Mono({
     subsets: ['latin'],
     weight: ['400', '700'],
@@ -21,7 +22,9 @@ const fontBody = Space_Mono({
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <ClerkProvider>
+        <ClerkProvider appearance={{
+            baseTheme: dark
+        }}>
             <html lang="en">
                 <body
                     className={cn(
