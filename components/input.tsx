@@ -6,8 +6,8 @@ import axios from "axios"
 import { useState } from "react"
 
 type ChirpInputProps = {
-    author: string,
-    authorId: string
+    author: string | undefined | null,
+    authorId: string | undefined | null
 }
 
 

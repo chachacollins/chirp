@@ -1,23 +1,56 @@
+import { Card } from "@/components/card";
 import { ChirpInput } from "@/components/input";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import prisma from "@/db";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
+
+const getSingleData = async (userId: string) => {
+
+    try {
+        const data = await prisma.post.findMany({
+            where: {
+                authorId: userId
+            },
+            orderBy: {
+                //most recent first
+                createdAt: "desc"
+            }
+        })
+
+        return data;
+    } catch (err) {
+        console.log(err)
+
+    }
+
+}
+
 
 export default async function Page() {
 
     // Get the userId from auth() -- if null, the user is not signed in
-    const { userId } = auth();
-
-    if (userId) {
-        console.log(userId);
-        // Query DB for user specific information or display assets only to signed in users
-    }
-
     // Get the Backend API User object when you need access to the user's information
     const user = await currentUser()
-    console.log(user);
+    const userId = user?.id
+    const userName = user?.username
+    const data = await getSingleData(userId!)
+
 
     return (
-        <ChirpInput author={user.username} authorId={user.id} />
+        <>
+            <SignedIn>
+                <ChirpInput author={userName} authorId={userId} />
 
+                {data.map((post) => <Card key={post.id} author={post.author} content={post.content} Id={post.id} />)}
+            </SignedIn>
+            <SignedOut>
+                <h1 className="text-3xl font-bold text-center">Sign in to view your chirps</h1>
+            </SignedOut>
+        </>
     );
 
     // Use `user` to render user details or create UI elements
