@@ -1,3 +1,4 @@
+import { ChirpInput } from "@/components/input";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
 export default async function Page() {
@@ -15,9 +16,8 @@ export default async function Page() {
     console.log(user);
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            hello world
-        </main>
+        <ChirpInput />
+
     );
 
     // Use `user` to render user details or create UI elements
