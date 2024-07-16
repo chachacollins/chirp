@@ -4,12 +4,20 @@ import prisma from "@/db";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
+
 const getSingleData = async (userId: string) => {
 
     try {
         const data = await prisma.post.findMany({
             where: {
                 authorId: userId
+            },
+            orderBy: {
+                //most recent first
+                createdAt: "desc"
             }
         })
 
