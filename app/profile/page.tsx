@@ -16,7 +16,7 @@ export default async function Page() {
     console.log(user);
 
     return (
-        <ChirpInput />
+        <ChirpInput author={user.username} authorId={user.id} />
 
     );
 
