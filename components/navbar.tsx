@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export function Navbar() {
     return (
-        <header className="w-full bg-background px-4 py-3 shadow-sm md:px-6 md:py-4">
+        <header className="w-fulpl bg-background px-4 py-3 shadow-sm md:px-6 md:py-4">
             <div className="container mx-auto flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-2" prefetch={false}>
                     <BirdIcon className="h-6 w-6" />
@@ -17,7 +17,7 @@ export function Navbar() {
                     <Link href="#" className="text-sm font-bold transition-colors hover:text-primary" prefetch={false}>
                         Chirps
                     </Link>
-                    <Link href="#" className="text-sm font-bold transition-colors hover:text-primary" prefetch={false}>
+                    <Link href="/profile" className="text-sm font-bold transition-colors hover:text-primary" prefetch={false}>
                         Profile
                     </Link>
                 </nav>

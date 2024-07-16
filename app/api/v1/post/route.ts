@@ -3,12 +3,13 @@ import prisma from "@/db";
 export const POST = async (req: Request) => {
     try {
         const body = await req.json();
-        const { title, content, authorId } = body;
+        const { author, content, authorId, imageUrl } = body;
         const post = await prisma.post.create({
             data: {
-                title,
+                author,
                 content,
-                authorId
+                authorId,
+                imageUrl
             }
         });
         return new Response(JSON.stringify(post), { status: 200 });
