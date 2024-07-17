@@ -1,32 +1,51 @@
 import Link from "next/link"
+import DeleteButton from "./deleteButton"
 
 type CardProps = {
     author: string,
     Id: string,
     content: string
+    owner: boolean
+}
+
+function deletePost(id: string) {
+    console.log("delete post", id)
 }
 
 
-
-export function Card({ author, Id, content }: CardProps) {
+export function Card({ author, Id, content, owner }: CardProps) {
     return (
-        <div className="w-full bg-background">
-            <div className="container mx-auto px-4 py-12 md:px-6 md:py-16">
+        <div className="w-full bg-background mt-4">
+            <div className="flex flex-col gap-4 mt-2 align-middle justify-center">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     <div className="rounded-lg bg-card p-6 shadow-sm">
                         <h3 className="text-lg font-semibold">{author}</h3>
                         <p className="mt-2 text-muted-foreground">{content}</p>
-                        <Link
-                            href={`/chirp/${Id}`}
-                            className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/90"
-                            prefetch={false}
-                        >
-                            View More
-                            <ArrowRightIcon className="h-4 w-4" />
-                        </Link>
-                    </div>
+                        <div className="flex justify-between">
+                            <div className="flex justify-start">
+                                <Link
+                                    href={`/chirp/${Id}`}
+                                    className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/90"
+                                    prefetch={false}
+                                >
+                                    View More
+                                    <ArrowRightIcon className="h-4 w-4" />
+                                </Link>
+                            </div>
+                            {owner ? <div className="flex justify-end">
 
+                                <DeleteButton id={Id} />
+                            </div>
+
+                                : null
+                            }
+                        </div>
+
+
+
+                    </div>
                 </div>
+
             </div>
         </div>
     )

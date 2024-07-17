@@ -28,3 +28,18 @@ export const GET = async () => {
         return new Response(JSON.stringify(error), { status: 500 });
     }
 };
+
+
+export const DELETE = async (req: Request) => {
+    try {
+        const { id } = await req.json();
+        const post = await prisma.post.delete({
+            where: {
+                id
+            }
+        });
+        return new Response(JSON.stringify(post), { status: 200 });
+    } catch (error) {
+        return new Response(JSON.stringify(error), { status: 500 });
+    }
+} 

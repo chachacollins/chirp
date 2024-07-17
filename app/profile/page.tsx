@@ -45,7 +45,7 @@ export default async function Page() {
             <SignedIn>
                 <ChirpInput author={userName} authorId={userId} />
 
-                {data.map((post) => <Card key={post.id} author={post.author} content={post.content} Id={post.id} />)}
+                {data.map((post) => <Card key={post.id} author={post.author} content={post.content} Id={post.id} owner={true} />)}
             </SignedIn>
             <SignedOut>
                 <h1 className="text-3xl font-bold text-center">Sign in to view your chirps</h1>
